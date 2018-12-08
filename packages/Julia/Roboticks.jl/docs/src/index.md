@@ -1,7 +1,7 @@
-# Example
+# Roboticks
 
-Example Julia package repo.
+Roboticks Julia package repo.
 
 ```@autodocs
-Modules = [Example]
+Modules = [Roboticks]
 ```

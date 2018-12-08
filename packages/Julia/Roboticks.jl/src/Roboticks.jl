@@ -1,4 +1,4 @@
-module Example
+module Roboticks
 export hello, domath
 
 """

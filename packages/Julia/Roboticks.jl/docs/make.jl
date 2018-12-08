@@ -1,7 +1,7 @@
-using Documenter, Example
+using Documenter, Roboticks
 
-makedocs(modules = [Example], sitename = "Example.jl")
+makedocs(modules = [Roboticks], sitename = "Roboticks.jl")
 
 deploydocs(
-    repo = "github.com/JuliaLang/Example.jl.git",
+    repo = "github.com/adamnemecek/Roboticks.jl.git",
 )
