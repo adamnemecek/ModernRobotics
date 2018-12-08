@@ -16,6 +16,8 @@ Optional library: matplotlib
 ***************************************************************************
 '''
 
+
+
 '''
 *** IMPORTS ***
 '''
@@ -26,7 +28,7 @@ Optional library: matplotlib
 *** BASIC HELPER FUNCTIONS ***
 '''
 
-function NearZero(z)
+function NearZero(z)::Bool
     """Determines whether a scalar is small enough to be treated as zero
 
     :param z: A scalar input to check
