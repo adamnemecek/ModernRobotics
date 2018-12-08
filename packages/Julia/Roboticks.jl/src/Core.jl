@@ -37,7 +37,7 @@ function NearZero(z)
     Output:
         True
     """
-    # return abs(z) < 1e-6
+    return abs(z) < 1e-6
 end
 
 function Normalize(V)
