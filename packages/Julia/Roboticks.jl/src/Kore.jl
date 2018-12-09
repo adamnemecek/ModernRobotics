@@ -138,21 +138,21 @@ end
 #     #                  [-omg[1], omg[0],       0]])
 # end
 
-# function so3ToVec(so3mat)
-#     """Converts an so(3) representation to a 3-vector
+function so3ToVec(so3mat)
+    """Converts an so(3) representation to a 3-vector
 
-#     :param so3mat: A 3x3 skew-symmetric matrix
-#     :return: The 3-vector corresponding to so3mat
+    :param so3mat: A 3x3 skew-symmetric matrix
+    :return: The 3-vector corresponding to so3mat
 
-#     Example Input:
-#         so3mat = np.array([[ 0, -3,  2],
-#                            [ 3,  0, -1],
-#                            [-2,  1,  0]])
-#     Output:
-#         np.array([1, 2, 3])
-#     """
-#     # return np.array([so3mat[2][1], so3mat[0][2], so3mat[1][0]])
-# end
+    Example Input:
+        so3mat = np.array([[ 0, -3,  2],
+                           [ 3,  0, -1],
+                           [-2,  1,  0]])
+    Output:
+        np.array([1, 2, 3])
+    """
+    # return np.array([so3mat[2][1], so3mat[0][2], so3mat[1][0]])
+end
 
 # function AxisAng3(expc3)
 #     """Converts a 3-vector of exponential coordinates for rotation into
