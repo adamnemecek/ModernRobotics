@@ -1,5 +1,5 @@
 
-using LinearAlgebra;
+using LinearAlgebra: norm;
 
 struct VecE3 
     x::Float64
@@ -7,10 +7,11 @@ struct VecE3
     z::Float64
 end
 
-
+# VecE3(x::Float64, y::Float64, z::Float64) = VecE3(float(x), float(y), float(z))
 
 # Base.show(io::IO, a::VecE3) = @printf(io, "VecE3(%.3f, %.3f, %.3f)", a.x, a.y, a.z)
 
+# this is really a 3x3 matrix
 struct SO3
     R::Array{Float64,2}
     SO3() = new()
@@ -84,19 +85,24 @@ function NearZero(z)::Bool
     return abs(z) < 1e-6
 end
 
-# function Normalize(V)
-#     """Normalizes a vector
+function norm(v::VecE3)::Float64
+    return sqrt(v.x ^2 + v.y ^ 2 + v.z ^ 2)
+end
 
-#     :param V: A vector
-#     :return: A unit vector pointing in the same direction as z
+function normalize(v::VecE3)::VecE3
+    """Normalizes a vector
 
-#     Example Input:
-#         V = np.array([1, 2, 3])
-#     Output:
-#         np.array([0.26726124, 0.53452248, 0.80178373])
-#     """
-#     # return V / np.linalg.norm(V)
-# end
+    :param V: A vector
+    :return: A unit vector pointing in the same direction as z
+
+    Example Input:
+        V = np.array([1, 2, 3])
+    Output:
+        np.array([0.26726124, 0.53452248, 0.80178373])
+    """
+    # return V / np.linalg.norm(V)
+    return [v.x, v.y, v.z] ./ norm(v)
+end
 
 # '''
 # *** CHAPTER 3: RIGID-BODY MOTIONS ***
@@ -138,7 +144,7 @@ end
 #     #                  [-omg[1], omg[0],       0]])
 # end
 
-function so3ToVec(so3mat)
+function so3ToVec(g::SO3):::VecE3
     """Converts an so(3) representation to a 3-vector
 
     :param so3mat: A 3x3 skew-symmetric matrix
@@ -167,7 +173,7 @@ end
 #     Output:
 #         (np.array([0.26726124, 0.53452248, 0.80178373]), 3.7416573867739413)
 #     """
-#     # return (Normalize(expc3), np.linalg.norm(expc3))
+#     # return (normalize(expc3), np.linalg.norm(expc3))
 # end
 
 # function MatrixExp3(so3mat)
@@ -320,23 +326,23 @@ end
 #     #              np.zeros((1, 4))]
 # end
 
-# function se3ToVec(se3mat)
-#     """ Converts an se3 matrix into a spatial velocity vector
+function se3ToVec(se3mat)
+    """ Converts an se3 matrix into a spatial velocity vector
 
-#     :param se3mat: A 4x4 matrix in se3
-#     :return: The spatial velocity 6-vector corresponding to se3mat
+    :param se3mat: A 4x4 matrix in se3
+    :return: The spatial velocity 6-vector corresponding to se3mat
 
-#     Example Input:
-#         se3mat = np.array([[ 0, -3,  2, 4],
-#                            [ 3,  0, -1, 5],
-#                            [-2,  1,  0, 6],
-#                            [ 0,  0,  0, 0]])
-#     Output:
-#         np.array([1, 2, 3, 4, 5, 6])
-#     """
-#     # return np.r_[[se3mat[2][1], se3mat[0][2], se3mat[1][0]],
-#     #              [se3mat[0][3], se3mat[1][3], se3mat[2][3]]]
-# end
+    Example Input:
+        se3mat = np.array([[ 0, -3,  2, 4],
+                           [ 3,  0, -1, 5],
+                           [-2,  1,  0, 6],
+                           [ 0,  0,  0, 0]])
+    Output:
+        np.array([1, 2, 3, 4, 5, 6])
+    """
+    # return np.r_[[se3mat[2][1], se3mat[0][2], se3mat[1][0]],
+    #              [se3mat[0][3], se3mat[1][3], se3mat[2][3]]]
+end
 
 # function Adjoint(T)
 #     """Computes the adjoint representation of a homogeneous transformation
